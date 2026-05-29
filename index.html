@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" data-scroll-behavior="smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Karia – Creative Video Portfolio | Nocturne</title>
+  <meta name="description" content="Explore Karia's portfolio, featuring premium video editing, motion design, and cinematic projects."/>
+  
+  <!-- Sleek Typography: Inter (body) & Instrument Serif (display titles) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Compiled Tailwind CSS Sheet -->
+  <link rel="stylesheet" href="index.css"/>
+  
+  <!-- Extra Page-Specific Styling for Animations, Layout Boundaries, and Transitions -->
+  <style>
+    @keyframes darkFloat {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-12px); }
+    }
+
+    .dark-template {
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Instrument Serif', serif;
+      font-family: var(--font-body);
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+    }
+
+    .dark-template .dark-display,
+    .dark-loading .dark-display {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .dark-template .accent-gradient,
+    .dark-loading .accent-gradient {
+      background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+    }
+
+    .dark-loading {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: #0a0a0a;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .dark-loading .loading-label {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      color: #878787;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .dark-loading .loading-word {
+      color: rgba(245, 245, 245, 0.8);
+      font-size: clamp(3rem, 8vw, 7rem);
+    }
+
+    .dark-loading .loading-counter {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      font-size: clamp(4rem, 11vw, 9rem);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dark-loading .loading-progress {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: rgba(31, 31, 31, 0.5);
+    }
+
+    .dark-loading .loading-progress span {
+      display: block;
+      height: 100%;
+      transform-origin: left;
+      box-shadow: 0 0 8px rgba(137, 170, 204, 0.35);
+    }
+
+    @keyframes darkFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes roleFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes footerMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body class="antialiased dark-template">
+
+  <!-- 1. FULLSCREEN INTRO LOADING SEQUENCE -->
+  <div class="dark-loading">
+    <div class="loading-label">Portfolio</div>
+    <div class="loading-word dark-display">Design</div>
+    <div class="loading-counter dark-display">000</div>
+    <div class="loading-progress">
+      <span class="accent-gradient" style="transform:scaleX(0)"></span>
+    </div>
+  </div>
+
+  <!-- 2. MAIN CONTAINER -->
+  <main class="min-h-screen bg-[#0a0a0a] text-[#f5f5f5]">
+
+    <!-- 2.1 FIXED NAVIGATION BAR -->
+    <nav class="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 md:pt-6">
+      <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-[#141414]/95 px-2 py-2 shadow-md shadow-black/10 backdrop-blur-md">
+        <a class="accent-gradient grid size-9 place-items-center rounded-full p-[2px] transition-transform hover:scale-110" href="#home">
+          <span class="dark-display grid w-full h-full place-items-center rounded-full bg-[#0a0a0a] text-[13px] font-semibold text-white">K</span>
+        </a>
+        <span class="mx-1 hidden h-5 w-px bg-[#1f1f1f] sm:block"></span>
+        <a class="rounded-full bg-[#1f1f1f]/50 px-3 py-1.5 text-xs text-[#f5f5f5] sm:px-4 sm:py-2 sm:text-sm transition-all" href="#home" id="nav-home">Home</a>
+        <a class="rounded-full px-3 py-1.5 text-xs text-[#878787] transition-all hover:bg-[#1f1f1f]/30 hover:text-[#f5f5f5] sm:px-4 sm:py-2 sm:text-sm" href="#work" id="nav-work">Work</a>
+        <a class="rounded-full px-3 py-1.5 text-xs text-[#878787] transition-all hover:bg-[#1f1f1f]/30 hover:text-[#f5f5f5] sm:px-4 sm:py-2 sm:text-sm" href="#resume" id="nav-resume">Resume</a>
+        <span class="mx-1 hidden h-5 w-px bg-[#1f1f1f] sm:block"></span>
+        <a class="rounded-full px-3 py-1.5 text-xs text-[#f5f5f5] transition-colors hover:bg-[#1f1f1f]/50 sm:px-4 sm:py-2 sm:text-sm" href="mailto:kartiksalaria844@gmail.com">Say hi ↗</a>
+      </div>
+    </nav>
+
+    <!-- 2.2 HERO / INTRO SECTION (Left-pinned details, Centered buttons) -->
+    <section id="home" class="relative flex flex-col justify-center items-start overflow-hidden px-8 md:px-16 lg:px-28 py-28 min-h-screen">
+      <!-- Background Video Direct Stream -->
+      <video class="absolute inset-0 w-full h-full object-cover object-[center_60%] opacity-70" src="Wallpaper-HERO.mp4" autoPlay loop muted playsInline></video>
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+      
+      <!-- Text details left-pinned -->
+      <div class="relative z-10 w-full max-w-3xl text-left animate-[darkFadeUp_1s_ease_0.2s_both]">
+        <p class="mb-8 text-xs uppercase tracking-[0.3em] text-[#878787]">Collection 26</p>
+        <h1 class="dark-display mb-6 text-6xl leading-[0.9] tracking-tight text-[#f5f5f5] md:text-8xl lg:text-9xl">Karia</h1>
+        
+        <div class="text-xl leading-relaxed text-[#f5f5f5] md:text-2xl min-h-[40px] flex items-center justify-start gap-1.5">
+          <span class="dark-display inline-block text-[#f5f5f5]" id="role-text" style="transition: opacity 0.4s ease, transform 0.4s ease;">Content Creator</span>
+          <span class="text-[#878787]"> · New Delhi, India</span>
+        </div>
+        
+        <p class="mt-5 max-w-xl whitespace-pre-line text-sm leading-7 text-[#878787] md:text-base">
+          Kartik Salaria | 20+
+          Some feelings only exist between frames.
+          Started it out of compulsion, Ended up in attachment.
+          
+          Worked for Top Level Brands: Swiggy, Nongshim, Kohler, IIT Kanpur, etc. as a Video Editor.
+          - AI Cinematic Video Making.
+          - Always looks out for New AI Tools &amp; Updates.
+          - From Cinematic looks to Motion Graphics.
+          
+          Don’t just give me an opportunity — give me responsibility.
+          
+          Under the supervision of Demox Media.
+        </p>
+      </div>
+
+      <!-- Action buttons kept centered at the bottom -->
+      <div class="relative z-10 w-full flex justify-center mt-12 animate-[darkFadeUp_1s_ease_0.3s_both]">
+        <div class="inline-flex flex-wrap gap-4">
+          <a class="rounded-full bg-[#f5f5f5] px-7 py-3.5 text-sm font-medium text-[#0a0a0a] transition-transform hover:scale-105" href="#work">See works</a>
+          <a class="rounded-full border border-white/20 bg-[#0a0a0a]/60 px-7 py-3.5 text-sm font-medium text-[#f5f5f5] transition-transform hover:scale-105 hover:border-white/40" href="mailto:kartiksalaria844@gmail.com">Reach out...</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.3 FEATURED SELECTED WORKS GALLERY (Updated grid enfolding 7 works) -->
+    <section id="work" class="bg-[#0a0a0a] px-6 py-16 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <div class="mb-3 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#878787]">
+              <span class="h-px w-8 bg-[#1f1f1f]"></span>Selected Work
+            </div>
+            <h2 class="text-4xl leading-none tracking-tight md:text-6xl">Featured <span class="dark-display">projects</span></h2>
+            <p class="mt-4 max-w-lg text-sm leading-7 text-[#878787]">A focused selection of edits, motion systems, and story-driven visuals.</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
+          <!-- Project 1: boAt Cinematic Ad (YouTube) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-7" style="animation: darkFloat 3.0s ease-in-out 0s infinite alternate" href="https://youtu.be/O3rjBsJhd5M">
+            <img alt="Turning boAt Into a Cinematic Ad" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" src="https://i.ytimg.com/vi/O3rjBsJhd5M/maxresdefault.jpg"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Turning boAt Into a Cinematic Ad</span>
+                </span>
+              </span>
+            </div>
+          </a>
+          
+          <!-- Project 2: Useless Editor (Instagram Reel DSaLKszEYi2) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-5" style="animation: darkFloat 3.6s ease-in-out 0.2s infinite alternate" href="https://www.instagram.com/reel/DSaLKszEYi2/?igsh=MWE5d3QzNWxkaWFxZw==">
+            <img alt="Useless Editor" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DSaLKszEYi2"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Useless Editor</span>
+                </span>
+              </span>
+            </div>
+          </a>
+          
+          <!-- Project 3: Bro thinks he is in an edit! (Instagram Reel DSXSGS3CcM_) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-5" style="animation: darkFloat 4.2s ease-in-out 0.4s infinite alternate" href="https://www.instagram.com/reel/DSXSGS3CcM_/?igsh=MXN5Zmg5MWFoaHU4dw==">
+            <img alt="Bro thinks he is in an edit!" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DSXSGS3CcM_"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Bro thinks he is in an edit!</span>
+                </span>
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 4: Cinematic Sound Design Edit (Instagram Reel DTahCJSkQjo) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-7" style="animation: darkFloat 3.3s ease-in-out 0.1s infinite alternate" href="https://www.instagram.com/reel/DTahCJSkQjo/?igsh=eTludHVzZjNyZ3U3">
+            <img alt="Cinematic Sound Design Edit" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DTahCJSkQjo"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Cinematic Sound Design Edit</span>
+                </span>
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 5: Brutalist Silhouette & Flow Edit (Instagram Reel DUiiXBxkc8m) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-4" style="animation: darkFloat 3.8s ease-in-out 0.3s infinite alternate" href="https://www.instagram.com/reel/DUiiXBxkc8m/?igsh=MTVyY25jZTNzb2ZuNw==">
+            <img alt="Brutalist Silhouette & Flow Edit" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DUiiXBxkc8m"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Brutalist Silhouette & Flow Edit</span>
+                </span>
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 6: Shin Ramyun Neon Campaign Edit (Instagram Reel DT0FOvSkcJa) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-4" style="animation: darkFloat 4.4s ease-in-out 0.5s infinite alternate" href="https://www.instagram.com/reel/DT0FOvSkcJa/?igsh=NHhrbm9kYWU4eDNv">
+            <img alt="Shin Ramyun Neon Campaign Edit" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DT0FOvSkcJa"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Shin Ramyun Neon Campaign Edit</span>
+                </span>
+              </span>
+            </div>
+          </a>
+
+          <!-- Project 7: Kohler Id26 Widescreen Narrative (Instagram Reel DYOhKq2z6F6) -->
+          <a target="_blank" class="group relative min-h-[360px] overflow-hidden rounded-3xl border border-[#1f1f1f] bg-[#141414] md:col-span-4" style="animation: darkFloat 4.0s ease-in-out 0.2s infinite alternate" href="https://www.instagram.com/reel/DYOhKq2z6F6/?igsh=ajJjdDRrdDFsd3Zp">
+            <img alt="Kohler Id26 Narrative" loading="lazy" width="900" height="640" class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" style="color:transparent" referrerpolicy="no-referrer" src="/api/instagram-cover?id=DYOhKq2z6F6"/>
+            <div class="absolute inset-0 opacity-20 mix-blend-multiply [background-image:radial-gradient(circle,#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+            <div class="absolute inset-0 grid place-items-center bg-[#0a0a0a]/70 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100">
+              <span class="accent-gradient rounded-full p-[2px]">
+                <span class="block rounded-full bg-white px-5 py-3 text-sm text-[#0a0a0a] font-medium">
+                  View — <span class="dark-display text-base">Kohler Id26 Narrative</span>
+                </span>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.4 RESUME EXPERIENCE LOG (Expanded and sorted chronologically) -->
+    <section id="resume" class="bg-[#0a0a0a] px-6 py-16 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="mb-8">
+          <div class="mb-3 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#878787]">
+            <span class="h-px w-8 bg-[#1f1f1f]"></span>Resume
+          </div>
+          <h2 class="text-4xl leading-none tracking-tight md:text-6xl">Selected <span class="dark-display">experience</span></h2>
+          <p class="mt-4 max-w-lg text-sm leading-7 text-[#878787]">Editorial roles and creative practice behind the work.</p>
+        </div>
+        
+        <div class="border-t border-[#1f1f1f]">
+          <!-- Experience 1: Kohler 2026 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2026</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Live Editor · Kohler</strong>
+              <div class="mt-2 text-sm text-[#878787]">ID26 - Okhla, Delhi</div>
+            </div>
+          </article>
+
+          <!-- Experience 2: Nongshim Shin 2026 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2026</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Live Editor · Nongshim Shin</strong>
+              <div class="mt-2 text-sm text-[#878787]">Mumbai</div>
+            </div>
+          </article>
+
+          <!-- Experience 3: Swiggy F&B 2026 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2026</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Assistant Director / Editor · Swiggy F&B</strong>
+              <div class="mt-2 text-sm text-[#878787]">Delhi</div>
+            </div>
+          </article>
+
+          <!-- Experience 4: Griffin D2C 2026 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2026</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Videographer · Griffin D2C</strong>
+              <div class="mt-2 text-sm text-[#878787]">Udaipur - Rajasthan</div>
+            </div>
+          </article>
+
+          <!-- Experience 5: Demox Media 2025 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2025</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Video Editor / Content Strategist · Demox Media</strong>
+              <div class="mt-2 text-sm text-[#878787]">Partner</div>
+            </div>
+          </article>
+
+          <!-- Experience 6: IIT Kanpur 2025 -->
+          <article class="grid gap-4 border-b border-[#1f1f1f] py-8 md:grid-cols-[minmax(7rem,0.35fr)_1fr] md:gap-8">
+            <span class="text-2xl font-light leading-none text-[#878787] tabular-nums md:text-5xl">2025</span>
+            <div>
+              <strong class="block text-2xl font-medium tracking-tight text-[#f5f5f5] md:text-4xl">Video Editor · Antaragni</strong>
+              <div class="mt-2 text-sm text-[#878787]">IIT KANPUR</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- 2.6 CREATIVE TOOLKIT -->
+    <section class="bg-[#0a0a0a] px-6 py-16 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-[1200px] border-t border-[#1f1f1f] pt-8">
+        <div class="mb-5 flex flex-col justify-between gap-3 md:flex-row md:items-center">
+          <p class="m-0 text-xs uppercase tracking-[0.3em] text-[#878787]">Toolkit</p>
+          <span class="text-sm text-[#878787]">Tools used in the editing workflow</span>
+        </div>
+        
+        <div class="flex flex-wrap gap-3">
+          <a target="_blank" class="inline-flex items-center gap-2 rounded-full border border-[#1f1f1f] bg-[#141414]/60 py-2 pl-2 pr-4 text-sm text-[#f5f5f5] transition-colors hover:border-[#89aacc]/55 hover:bg-[#141414]" href="https://www.adobe.com/products/premiere.html">
+            <img alt="Premiere Pro" loading="lazy" width="36" height="36" class="size-8 rounded-full object-cover" src="https://corrra.com/e3b8da9e274298cdf0651e7830ba47e0.webp"/>Premiere Pro
+          </a>
+          <a target="_blank" class="inline-flex items-center gap-2 rounded-full border border-[#1f1f1f] bg-[#141414]/60 py-2 pl-2 pr-4 text-sm text-[#f5f5f5] transition-colors hover:border-[#89aacc]/55 hover:bg-[#141414]" href="https://www.adobe.com/products/aftereffects.html">
+            <img alt="After Effects" loading="lazy" width="36" height="36" class="size-8 rounded-full object-cover" src="https://corrra.com/7ef44cbf4f6601203b89871ab5b8795d.webp"/>After Effects
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.7 CONTACT & INFINITE MARQUEE FOOTER -->
+    <section id="contact" class="relative overflow-hidden bg-[#0a0a0a] px-6 pb-10 pt-24 text-center">
+      <video class="absolute inset-0 w-full h-full object-cover opacity-25 [transform:scaleY(-1)]" src="Wallpaper-HERO.mp4" autoPlay loop muted playsInline></video>
+      <div class="absolute inset-0 bg-black/60"></div>
+      
+      <div class="relative z-10 mx-auto max-w-[1200px]">
+        <!-- High-End Scrolling Marquee Banner -->
+        <div class="dark-display mb-12 w-max animate-[footerMarquee_40s_linear_infinite] whitespace-nowrap text-[16vw] leading-none text-white/10 select-none">
+          KARIA PORTFOLIO • KARIA PORTFOLIO • KARIA PORTFOLIO • KARIA PORTFOLIO • KARIA PORTFOLIO • KARIA PORTFOLIO • 
+        </div>
+        
+        <h2 class="text-6xl leading-none tracking-tight md:text-8xl">Say <span class="dark-display">hello</span></h2>
+        <a class="mt-8 inline-flex rounded-full bg-[#f5f5f5] px-7 py-3.5 text-sm font-semibold text-[#0a0a0a] transition-transform hover:scale-105" href="mailto:kartiksalaria844@gmail.com">kartiksalaria844@gmail.com</a>
+        
+        <div class="mt-16 flex flex-wrap items-center justify-between gap-5 text-sm text-[#878787]">
+          <div class="flex flex-wrap gap-4">
+            <a target="_blank" class="transition-colors hover:text-[#f5f5f5]" href="https://www.youtube.com/@NorpFx">YouTube</a>
+            <a target="_blank" class="transition-colors hover:text-[#f5f5f5]" href="https://www.instagram.com/notkartiksalaria">Instagram</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="size-2 rounded-full bg-[#46d97e] shadow-[0_0_0_8px_rgba(70,217,126,0.08)]"></span>Available for projects
+          </div>
+        </div>
+        
+        <div class="mt-8 flex flex-wrap justify-center gap-2">
+          <span class="rounded-full border border-[#1f1f1f] px-4 py-1.5 text-xs tracking-widest text-[#878787] uppercase">English</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3. PREMIUM UI INTERACTIONS & MICRO-SCRIPTS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 3.1 Loading Counter Sequence
+      const loadingScreen = document.querySelector('.dark-loading');
+      const counter = document.querySelector('.loading-counter');
+      const progress = document.querySelector('.loading-progress span');
+      const words = ["Design", "Motion", "Director", "Vision"];
+      const wordEl = document.querySelector('.loading-word');
+      
+      let count = 0;
+      let wordIndex = 0;
+      
+      const interval = setInterval(() => {
+        count += 1;
+        counter.textContent = String(count).padStart(3, '0');
+        progress.style.transform = `scaleX(${count / 100})`;
+        
+        if (count % 25 === 0 && wordIndex < words.length - 1) {
+          wordIndex++;
+          wordEl.textContent = words[wordIndex];
+        }
+        
+        if (count >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+          }, 350);
+        }
+      }, 15);
+
+      // 3.2 Dynamic Role cycling
+      const roles = ["Content Creator", "Video Editor", "Creative Director"];
+      let roleIndex = 0;
+      const roleEl = document.getElementById('role-text');
+      
+      setInterval(() => {
+        if (roleEl) {
+          roleEl.style.opacity = '0';
+          roleEl.style.transform = 'translateY(-6px)';
+          
+          setTimeout(() => {
+            roleIndex = (roleIndex + 1) % roles.length;
+            roleEl.textContent = roles[roleIndex];
+            roleEl.style.transform = 'translateY(6px)';
+            
+            // force browser layout repaint
+            roleEl.offsetHeight;
+            
+            roleEl.style.opacity = '1';
+            roleEl.style.transform = 'translateY(0)';
+          }, 400);
+        }
+      }, 3500);
+
+      // 3.3 Active Section Nav Highlighting
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = {
+        'home': document.getElementById('nav-home'),
+        'work': document.getElementById('nav-work'),
+        'resume': document.getElementById('nav-resume')
+      };
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= (sectionTop - 250)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        // Normalize Links
+        Object.keys(navLinks).forEach(key => {
+          const link = navLinks[key];
+          if (link) {
+            link.className = "rounded-full px-3 py-1.5 text-xs text-[#878787] transition-all hover:bg-[#1f1f1f]/30 hover:text-[#f5f5f5] sm:px-4 sm:py-2 sm:text-sm";
+            if (key === current) {
+              link.className = "rounded-full bg-[#1f1f1f]/50 px-3 py-1.5 text-xs text-[#f5f5f5] sm:px-4 sm:py-2 sm:text-sm transition-all";
+            }
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>
